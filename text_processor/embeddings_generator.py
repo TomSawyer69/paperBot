@@ -18,17 +18,24 @@ def generate_and_save_embeddings(extracted_dir, save_dir='..\\embeddings', model
 
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
-    print("here")
+
     for pdf_name in os.listdir(extracted_dir):
         pdf_text_path = os.path.join(extracted_dir, pdf_name, 'text', f'{pdf_name}_text.txt')
-        print(pdf_text_path)
         if os.path.exists(pdf_text_path):
-
             chunks = load_pdf_chunks(pdf_text_path)
             if chunks:
+                # Generate embeddings for each chunk
                 embeddings = model.encode(chunks, show_progress_bar=True, convert_to_numpy=True)
+
+                # Save embeddings as .npy file for each PDF
                 np.save(os.path.join(save_dir, f'{pdf_name}_embeddings.npy'), embeddings)
-                print(f'Embeddings saved for {pdf_name}')
+
+                # Optionally save metadata (e.g., chunk text or indexes)
+                with open(os.path.join(save_dir, f'{pdf_name}_chunks.txt'), 'w', encoding='utf-8') as f:
+                    for chunk in chunks:
+                        f.write(chunk + '\n<|endofchunk|>\n')
+
+                print(f'Embeddings and chunks saved for {pdf_name}')
 
 
 # Example usage:

@@ -1,10 +1,7 @@
 import fitz  # PyMuPDF
-from sentence_transformers import SentenceTransformer
 from PIL import Image
 import io
 import os
-import re
-import pandas as pd
 from tabula import read_pdf
 
 
