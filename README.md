@@ -61,7 +61,20 @@ pip install -r requirements.txt
 ```
 ## Usage
 
-1. To be added
+1. Open the upload app interface to upload the zip file and enter the query.
+```bash
+     streamlit run /paperBot/app/app.py
+```
+
+2. Run the python files in this order:
+```bash
+    '/paperBot/text_processor/chunk_extractor.py'
+    '/paperBot/text_processor/embeddings_generator.py'
+    '/paperBot/text_processor/distance_querying.py'
+    '/paperBot/text_processor/query_replier_single.py'
+```
+
+3. After running these, the output.txt file is stored in `/paperBot/resources/output.txt`
 
 ## Directory Structure
 
@@ -70,13 +83,12 @@ pip install -r requirements.txt
 ├── /app                            # Directory for UI Elements
 │   └── /interface.py               
 ├── /resources                      # Project Resources Directory (git-ignored)
-│   ├── /embeddings                 # Output directory for embeddings and chunks data
-│   ├── /extracted                  # Output directory for extracted content
-│   └── /uploads                    # Output directory for pdf files extracted
 ├── /text_processor                 # Directory for text processing
 │   ├── /chunk_extractor.py         
-│   ├── /distance_querying.py       
-│   └── /embeddings_generator.py    
+│   ├── /distance_querying.py
+│   ├── /embeddings_generator.py
+│   ├── /query_replier_multiple.py  
+│   └── /query_replier_single.py    
 ├── venv                            # Virtual Environment of the project (git-ignored)
 ├── .gitignore                      
 ├── README.md                       
