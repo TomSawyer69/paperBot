@@ -1,0 +1,11 @@
+# Ignore Python cache and temporary files
+__pycache__/
+*.py[cod]
+*.swp
+
+# Ignore environment directories
+env/
+venv/
+
+# Ignore uploaded files
+uploads/
