@@ -8,8 +8,9 @@ This project implements a Question-Answering (QA) bot that leverages a knowledge
 - [Installation](#installation)
 - [Usage](#usage)
 - [Directory Structure](#directory-structure)
+- [Future Improvements](#improvements)
 - [Pending Modules](#pending-modules)
-- 
+
 ## Features
 
 - Extracts text, tables, and images from PDF research papers.
@@ -96,6 +97,13 @@ pip install -r requirements.txt
 ├── README.md                       
 └── requirements.txt                
 ```
+
+## Future Improvements 
+
+- Retrieval of text chunks based on layouts or similar methods for proper chunking.
+- Usage of better model to answer the query after finding the matching papers.
+- Implementation of images and table embeddings.
+
 
 ## Pending modules
 
