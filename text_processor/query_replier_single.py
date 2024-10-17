@@ -10,12 +10,10 @@ def read_chunks_from_file(filename):
         content = file.read()
     return content.split('<|endofchunk|>')
 
-
 def get_chunk_range(chunks, x, range_size=2):
     start = max(0, x - range_size)
     end = min(len(chunks), x + range_size + 1)
     return chunks[start:end]
-
 
 def process_chunks_and_query(chunks, chunk_number, query):
     # Get the range of chunks
@@ -25,7 +23,7 @@ def process_chunks_and_query(chunks, chunk_number, query):
     paragraph = " ".join(relevant_chunks)
 
     # Initialize the language model
-    model_name = "gpt2"
+    model_name = "distilgpt2"  # Use distilgpt2 for a lighter model
     model = GPT2LMHeadModel.from_pretrained(model_name)
     tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 
@@ -34,7 +32,7 @@ def process_chunks_and_query(chunks, chunk_number, query):
     model.config.pad_token_id = model.config.eos_token_id
 
     # Prepare input for the model
-    input_text = f"Paragraph: {paragraph}\n\nQuery: {query}\n\nDetailed response:"
+    input_text = f"Based on the following text:\n\n{paragraph}\n\nAnswer the query:\n{query}\n\nResponse:"
     inputs = tokenizer(input_text, return_tensors='pt', padding=True, truncation=True, max_length=1024)
 
     # Generate response
@@ -46,13 +44,13 @@ def process_chunks_and_query(chunks, chunk_number, query):
         do_sample=True,
         top_k=50,
         top_p=0.95,
-        temperature=0.7
+        temperature=0.8  # Adjusted for experimentation
     )
 
     response = tokenizer.decode(output[0], skip_special_tokens=True)
 
     # Extract only the generated part
-    response = response.split("Detailed response:")[-1].strip()
+    response = response.split("Response:")[-1].strip()
 
     # Post-process to ensure complete sentences
     sentences = re.split('(?<=[.!?]) +', response)
@@ -61,13 +59,13 @@ def process_chunks_and_query(chunks, chunk_number, query):
 
     return paragraph, response
 
-
+# Read the query
 with open('../resources/out/query.txt', 'r') as file:
     lines = file.readlines()
 
 # Extract the query
 query = lines[0].strip().split(": ", 1)[1]
-query = query + ". Give a properly structured output."  # add custom prompt here
+query = query + ". Give a properly structured output."  # Add custom prompt here
 
 pdf_name = None
 chunk_idx = None
@@ -80,15 +78,15 @@ with open('../resources/out/out1.txt', 'r', encoding='utf-8') as file:
             # Split the line into parts
             parts = stripped_line.split(', ')
             pdf_name = parts[0].split(': ')[1]  # Get the PDF name
-            chunk_idx = int(parts[1].split(': ')[1])
+            chunk_idx = int(parts[1].split(': ')[1])  # Get the chunk index
 
-
+# Read chunks from the file
 chunks = read_chunks_from_file(pdf_name.strip())
 
-
+# Process the chunks and query
 paragraph, llm_response = process_chunks_and_query(chunks, chunk_idx, query.strip())
 
-reply_file = '..\\resources\\out\\reply.txt'
-
+# Write the response to a file
+reply_file = '../resources/out/reply.txt'
 with open(reply_file, 'w', encoding='utf-8') as f:
     f.write(f"{llm_response}")
