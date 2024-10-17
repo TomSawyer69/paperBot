@@ -65,6 +65,7 @@ pip install -r requirements.txt
 
 ## Directory Structure
 
+```bash
 /research-paper-qa-bot
 ├── /app                            # Directory for UI Elements
 │   └── /interface.py               
@@ -80,4 +81,4 @@ pip install -r requirements.txt
 ├── .gitignore                      
 ├── README.md                       
 └── requirements.txt                
-
+```
