@@ -30,7 +30,7 @@ def extract_pdf_text(pdf_path, chunk_size=512):
     full_text = full_text.strip()
     # Split the full text into chunks of the specified size
     text_chunks = [full_text[i:i + chunk_size] for i in range(0, len(full_text), chunk_size)]
-    return text_chunks
+    return text_chunks, full_text
 
 
 # Function to extract tables from PDF
@@ -58,7 +58,7 @@ for pdf_file in os.listdir(uploads_dir):
         pdf_path = os.path.join(uploads_dir, pdf_file)
 
         image_chunks = extract_pdf_image(pdf_path)
-        text_chunks = extract_pdf_text(pdf_path)
+        text_chunks, text = extract_pdf_text(pdf_path)
         table_chunks = extract_pdf_tables(pdf_path)
 
         pdf_base_name = os.path.splitext(pdf_file)[0]
@@ -87,6 +87,9 @@ for pdf_file in os.listdir(uploads_dir):
         with open(f"{pdf_extracted_path}/text/{pdf_base_name}_text.txt", "w", encoding="utf-8") as text_file:
             text_file.write(delimiter.join(text_chunks))  # Join chunks with the delimiter
             print(f"Saved text as {pdf_extracted_path}/text/{pdf_base_name}_text.txt")
+
+        with open(f"{pdf_extracted_path}/text/{pdf_base_name}_text_unchunked.txt", "w", encoding="utf-8") as text_file:
+            text_file.write(text)  # Join chunks with the delimiter
 
         # Create and save metadata
         metadata_content = f"""

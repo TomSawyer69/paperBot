@@ -66,10 +66,11 @@ def save_avg_distance_to_file(results, query, output_file='..\\resources\\avg_di
 # Example usage
 embedding_dir = '..\\resources\\embeddings'
 extracted_dir = '..\\resources\\extracted'
+out_dir = '..\\resources\\out'
 
 os.makedirs(embedding_dir, exist_ok=True)
 os.makedirs(extracted_dir, exist_ok=True)
-
+os.makedirs(out_dir, exist_ok=True)
 # Step 1: Load embeddings and metadata
 all_embeddings, metadata = load_embeddings_and_metadata(embedding_dir)
 
@@ -79,12 +80,16 @@ faiss_index = build_faiss_index(all_embeddings, embedding_dimension)
 
 # Step 3: Query the index
 model = SentenceTransformer('all-MiniLM-L6-v2')
-query = "Gpu kernels for block-sparse weights"
+query = "Explain semi-supervised learning for NLP"
 results = query_faiss_index(query, faiss_index, model, metadata)
 
-# Display results
-for (pdf_name, chunk_idx, chunk_text), distance in results:
-    print(f"PDF: {pdf_name}, Chunk {chunk_idx}, Distance: {distance}")
-    print(f"Chunk: {chunk_text}\n")
+query_file = '..\\resources\\out\\query.txt'
 
-save_avg_distance_to_file(results, query)
+with open(query_file, 'w', encoding='utf-8') as f:
+    f.write(f"Query: {query}\n\n")
+
+for i, ((pdf_name, chunk_idx, chunk_text), distance) in enumerate(results):
+    out_file = os.path.join(out_dir, f'out{i + 1}.txt')
+    with open(out_file, 'w', encoding='utf-8') as f:
+        f.write(f"PDF: {pdf_name}, chunk: {chunk_idx}\n")
+# save_avg_distance_to_file(results, query)
