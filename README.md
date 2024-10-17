@@ -68,8 +68,11 @@ pip install -r requirements.txt
 ```bash
      streamlit run /paperBot/app/app.py
 ```
+   After this, close the window and continue.
+   Note: The uploaded files are cleared everytime the page is reloaded or when switching from the query page.
+   
 
-2. Run the python files in this order:
+2. Run the python files in cmd in this order:
 ```bash
     '/paperBot/text_processor/chunk_extractor.py'
     '/paperBot/text_processor/embeddings_generator.py'
