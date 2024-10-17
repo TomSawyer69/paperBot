@@ -13,7 +13,7 @@ def load_pdf_chunks(pdf_txt_path):
     return chunks
 
 
-def generate_and_save_embeddings(extracted_dir, save_dir='..\\embeddings', model_name='all-MiniLM-L6-v2'):
+def generate_and_save_embeddings(extracted_dir, save_dir='..\\resources\\embeddings', model_name='all-MiniLM-L6-v2'):
     model = SentenceTransformer(model_name)
 
     if not os.path.exists(save_dir):
@@ -39,5 +39,6 @@ def generate_and_save_embeddings(extracted_dir, save_dir='..\\embeddings', model
 
 
 # Example usage:
-extracted_dir = '..\\extracted'
+extracted_dir = '..\\resources\\extracted'
+os.makedirs(extracted_dir, exist_ok=True)
 generate_and_save_embeddings(extracted_dir)

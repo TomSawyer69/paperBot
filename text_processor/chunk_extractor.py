@@ -45,11 +45,12 @@ def extract_pdf_tables(pdf_path):
 
 
 # Path to the directory containing PDFs
-uploads_dir = "../uploads/papers"
-extracted_dir = "../extracted"
+uploads_dir = "../resources/uploads/papers"
+extracted_dir = "../resources/extracted"
 
 # Ensure the extracted directory exists
 os.makedirs(extracted_dir, exist_ok=True)
+os.makedirs(uploads_dir, exist_ok=True)
 
 # Process each PDF file in the uploads directory
 for pdf_file in os.listdir(uploads_dir):

@@ -8,6 +8,6 @@ env/
 venv/
 
 # Ignore uploaded files
-uploads/
 extracted/
 embeddings/
+resources/
