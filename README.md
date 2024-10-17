@@ -8,14 +8,16 @@ This project implements a Question-Answering (QA) bot that leverages a knowledge
 - [Installation](#installation)
 - [Usage](#usage)
 - [Directory Structure](#directory-structure)
-
+- [Pending Modules](#pending-modules)
+- 
 ## Features
 
 - Extracts text, tables, and images from PDF research papers.
 - Generates embeddings for text chunks using Sentence Transformers.
 - Stores embeddings in a vector database using FAISS.
 - Allows users to query the database and retrieve relevant PDFs and chunks.
-- Outputs query results in both plain text and XML formats.
+- Outputs query results plain text format
+
 
 ## Installation
 
@@ -94,3 +96,7 @@ pip install -r requirements.txt
 ├── README.md                       
 └── requirements.txt                
 ```
+
+## Pending modules
+
+- Seamless implementation of the project and integration of all the various modules to work together.
