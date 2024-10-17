@@ -48,7 +48,7 @@ def extract_pdf_tables(pdf_path):
 
 
 # Path to the directory containing PDFs
-uploads_dir = "../uploads"
+uploads_dir = "../uploads/papers"
 extracted_dir = "../extracted"
 
 # Ensure the extracted directory exists

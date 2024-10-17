@@ -6,6 +6,7 @@ import shutil
 # File upload handler
 def upload_zip_file(upload_dir='uploads/'):
     # Clear the upload directory
+    # os.makedirs(upload_dir, exist_ok=True)
     if os.path.exists(upload_dir):
         shutil.rmtree(upload_dir)
     os.makedirs(upload_dir)
