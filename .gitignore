@@ -10,4 +10,4 @@ venv/
 # Ignore uploaded files
 uploads/
 extracted/
-
+embeddings/
