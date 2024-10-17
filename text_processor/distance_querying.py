@@ -80,13 +80,11 @@ faiss_index = build_faiss_index(all_embeddings, embedding_dimension)
 
 # Step 3: Query the index
 model = SentenceTransformer('all-MiniLM-L6-v2')
-query = "Explain semi-supervised learning for NLP"
-results = query_faiss_index(query, faiss_index, model, metadata)
-
-query_file = '..\\resources\\out\\query.txt'
-
-with open(query_file, 'w', encoding='utf-8') as f:
-    f.write(f"Query: {query}\n\n")
+with open('../resources/out/query.txt', 'r') as file:
+    lines = file.readlines()
+# Extract the query
+query = lines[0].strip().split(": ", 1)[1]
+results = query_faiss_index(query.strip(), faiss_index, model, metadata)
 
 for i, ((pdf_name, chunk_idx, chunk_text), distance) in enumerate(results):
     out_file = os.path.join(out_dir, f'out{i + 1}.txt')

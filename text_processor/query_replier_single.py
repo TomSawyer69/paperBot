@@ -60,7 +60,7 @@ def process_chunks_and_query(chunks, chunk_number, query):
     return paragraph, response
 
 # Read the query
-with open('../resources/out/query.txt', 'r') as file:
+with open('../resources/uploads/query.txt', 'r') as file:
     lines = file.readlines()
 
 # Extract the query
@@ -87,6 +87,6 @@ chunks = read_chunks_from_file(pdf_name.strip())
 paragraph, llm_response = process_chunks_and_query(chunks, chunk_idx, query.strip())
 
 # Write the response to a file
-reply_file = '../resources/out/reply.txt'
+reply_file = '../resources/reply.txt'
 with open(reply_file, 'w', encoding='utf-8') as f:
     f.write(f"{llm_response}")
