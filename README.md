@@ -8,6 +8,8 @@ This project implements a Question-Answering (QA) bot that leverages a knowledge
 - [Installation](#installation)
 - [Usage](#usage)
 - [Directory Structure](#directory-structure)
+- [Future Improvements](#improvements)
+- [Pending Modules](#pending-modules)
 
 ## Features
 
@@ -15,7 +17,8 @@ This project implements a Question-Answering (QA) bot that leverages a knowledge
 - Generates embeddings for text chunks using Sentence Transformers.
 - Stores embeddings in a vector database using FAISS.
 - Allows users to query the database and retrieve relevant PDFs and chunks.
-- Outputs query results in both plain text and XML formats.
+- Outputs query results plain text format
+
 
 ## Installation
 
@@ -65,8 +68,11 @@ pip install -r requirements.txt
 ```bash
      streamlit run /paperBot/app/app.py
 ```
+   After this, close the window and continue.
+   Note: The uploaded files are cleared everytime the page is reloaded or when switching from the query page.
+   
 
-2. Run the python files in this order:
+2. Run the python files in cmd in this order:
 ```bash
     '/paperBot/text_processor/chunk_extractor.py'
     '/paperBot/text_processor/embeddings_generator.py'
@@ -94,3 +100,14 @@ pip install -r requirements.txt
 ├── README.md                       
 └── requirements.txt                
 ```
+
+## Future Improvements 
+
+- Retrieval of text chunks based on layouts or similar methods for proper chunking.
+- Usage of better model to answer the query after finding the matching papers.
+- Implementation of images and table embeddings.
+
+
+## Pending modules
+
+- Seamless implementation of the project and integration of all the various modules to work together.
