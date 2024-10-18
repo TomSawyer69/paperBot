@@ -118,3 +118,7 @@ print("\nFinal Answer:", final_output)
 reply_file = '../resources/reply.txt'
 with open(reply_file, 'w', encoding='utf-8') as f:
     f.write(f"{final_output}")
+
+reply_file = '../resources/query.txt'
+with open(reply_file, 'w', encoding='utf-8') as f:
+    f.write(f"{query}")
