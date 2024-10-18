@@ -114,3 +114,7 @@ with open('../resources/out/out1.txt', 'r', encoding='utf-8') as file:
 # Generate the summary with context
 final_output = process_chunks_with_context(pdf_name, query,  chunk_idx)
 print("\nFinal Answer:", final_output)
+
+reply_file = '../resources/reply.txt'
+with open(reply_file, 'w', encoding='utf-8') as f:
+    f.write(f"{final_output}")
