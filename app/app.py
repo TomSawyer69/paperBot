@@ -7,7 +7,6 @@ import shutil
 UPLOAD_FOLDER = 'resources\\uploads'
 QUERY_FILE = os.path.join(UPLOAD_FOLDER, 'query.txt')
 
-
 # Function to upload and extract zip files
 def upload_zip_file():
     """Upload a zip file and extract its contents to the upload folder."""
