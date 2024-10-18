@@ -80,7 +80,10 @@ pip install -r requirements.txt
     '/paperBot/text_processor/query_replier_multiple.py'
 ```
 
-3. After running these, the output.txt file is stored in `/paperBot/resources/output.txt`
+3. Now run the output.py streamlit file.
+```bash
+     streamlit run /paperBot/app/output.py
+```
 
 ## Directory Structure
 
