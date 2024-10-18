@@ -77,7 +77,7 @@ pip install -r requirements.txt
     '/paperBot/text_processor/chunk_extractor.py'
     '/paperBot/text_processor/embeddings_generator.py'
     '/paperBot/text_processor/distance_querying.py'
-    '/paperBot/text_processor/query_replier_single.py'
+    '/paperBot/text_processor/query_replier_multiple.py'
 ```
 
 3. After running these, the output.txt file is stored in `/paperBot/resources/output.txt`
